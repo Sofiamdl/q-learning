@@ -17,7 +17,6 @@ def connect(port):
     else:
         print('continuando')
 
-
 #Da o estado e a recompensa que o agente recebeu
 def get_state_reward(s , act):
     s.send(str(act).encode())
