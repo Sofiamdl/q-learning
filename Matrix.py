@@ -17,7 +17,7 @@ class Matrix:
         with open(Matrix.FILE_CONTENT, "w") as file:
             new_states = ""
             for state in matrix:
-                new_states += f'{round(state.left, Matrix.NUMBER_PRECISION)} {round(state.right, Matrix.NUMBER_PRECISION)} {round(state.jump, Matrix.NUMBER_PRECISION)}\n'
+                new_states += f'{state.left:.6f} {state.right:.6f} {state.jump:.6f}\n'
             file.write(new_states)
 
 
