@@ -1,18 +1,23 @@
 from connection import connect, get_state_reward
+from Matrix import Matrix
 
 class GameController:
 
     def __init__(self):
+        self.__matrix_loader = Matrix()
         self.__start_connection_with_qlearning_app()
 
     
     def __start_connection_with_qlearning_app(self):
         self.__socket = connect(2037)
-        state, reward = get_state_reward(self.__socket, "jump")
-        print(state, reward)
+        self.__
 
     def start_controller(self):
-        pass
+        matrix = self.__matrix_loader.get_matrix()
+        
+        while True:
+            print("interação com o rolê")
+
 
 
 if __name__ == "__main__":

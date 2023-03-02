@@ -1,23 +1,28 @@
-class PlatformState:
+from State import State
 
-    def __init__(self, left, right, jump):
-        self.left = left
-        self.right = right
-        self.jump = jump
 
 class Matrix:
 
+    FILE_CONTENT = './resultado.txt'
+    NUMBER_PRECISION = 4
+
     def get_matrix(self):
-        with open('./resultado.txt', 'r') as file:
+        with open(Matrix.FILE_CONTENT, 'r') as file:
             text = file.readlines()
             states = [line.strip().split() for line in text]
-            platforms = [PlatformState(state[0], state[1], state[2]) for state in states]
-            return platforms
+            matrix = [State(state[0], state[1], state[2]) for state in states]
+            return matrix
 
-    def update_matrix(self):
-	    with open("./resultado.txt", "r") as file:
-		    pass
+    def update_matrix(self, matrix: list[State]):
+        with open(Matrix.FILE_CONTENT, "w") as file:
+            new_states = ""
+            for state in matrix:
+                new_states += f'{round(state.left, Matrix.NUMBER_PRECISION)} {round(state.right, Matrix.NUMBER_PRECISION)} {round(state.jump, Matrix.NUMBER_PRECISION)}\n'
+            file.write(new_states)
+
 
 if __name__ == "__main__":
-    matrix = Matrix()
-    matrix.get_matrix()
+    matrix_loader = Matrix()
+    matrix = matrix_loader.get_matrix()
+    matrix[0].left = 1
+    matrix_loader.update_matrix(matrix)
