@@ -13,7 +13,7 @@ class QAgent:
         exploration = randint(0, 12)
         agent_state = int(state, 2)
 
-        if exploration > 8:
+        if exploration > 7:
             agent_state_value = matrix[agent_state]
             action_value = max(agent_state_value.left, agent_state_value.right, agent_state_value.jump)
 
@@ -33,13 +33,16 @@ class QAgent:
         line_state = matrix[agent_state]
         q_max = max(line_state.left, line_state.right, line_state.jump)
 
+        ## 0.1 learning rate
+        ## 0.3 discount factor
+
 
         if action == "jump":
-            matrix[agent_last_state].jump += 0.6 * ((reward + 0.42 * q_max) - matrix[agent_last_state].jump)
+            matrix[agent_last_state].jump += 0.1 * ((reward + 0.3 * q_max) - matrix[agent_last_state].jump)
         elif action == "left":
-            matrix[agent_last_state].left += 0.6 * ((reward + 0.42 * q_max) - matrix[agent_last_state].left)
+            matrix[agent_last_state].left += 0.1 * ((reward + 0.3 * q_max) - matrix[agent_last_state].left)
         else:
-            matrix[agent_last_state].right += 0.6 * ((reward + 0.42 * q_max) - matrix[agent_last_state].right)
+            matrix[agent_last_state].right += 0.1 * ((reward + 0.3 * q_max) - matrix[agent_last_state].right)
 
         return matrix
 
