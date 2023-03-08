@@ -5,12 +5,8 @@ class QAgent:
 
     ACTIONS = ["left", "right", "jump"]
 
-    def __init__(self):
-        print("10")
-
-
     def get_action(self, matrix: list[State], state: str) -> str:
-        exploration = randint(0, 12)
+        exploration = randint(0, 10)
         agent_state = int(state, 2)
 
         if exploration > 7:
@@ -38,11 +34,11 @@ class QAgent:
 
 
         if action == "jump":
-            matrix[agent_last_state].jump += 0.1 * ((reward + 0.3 * q_max) - matrix[agent_last_state].jump)
+            matrix[agent_last_state].jump += 0.1 * ((reward + 0.55 * q_max) - matrix[agent_last_state].jump)
         elif action == "left":
-            matrix[agent_last_state].left += 0.1 * ((reward + 0.3 * q_max) - matrix[agent_last_state].left)
+            matrix[agent_last_state].left += 0.1 * ((reward + 0.55 * q_max) - matrix[agent_last_state].left)
         else:
-            matrix[agent_last_state].right += 0.1 * ((reward + 0.3 * q_max) - matrix[agent_last_state].right)
+            matrix[agent_last_state].right += 0.1 * ((reward + 0.55 * q_max) - matrix[agent_last_state].right)
 
         return matrix
 
