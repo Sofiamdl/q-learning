@@ -15,7 +15,8 @@ class GameController:
 
     def start_controller(self):
         matrix = self.__matrix_loader.get_matrix()
-        last_state = '000000'
+        last_state = '0000000'
+        # last_state = '0000000'
 
         while True:
             action = self.__agent.get_action(matrix, last_state)

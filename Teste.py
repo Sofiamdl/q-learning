@@ -16,7 +16,7 @@ class Teste:
     def start_controller(self):
         print("funcionando")
         matrix = self.__matrix_loader.get_matrix()
-        last_state = '000000'
+        last_state = '0000000'
 
         while True:
 
